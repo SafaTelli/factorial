@@ -1,4 +1,6 @@
 const express = require('express')
+const fact = require('./fact');
+
 const app = express()
 const port = 3000
 
@@ -13,21 +15,14 @@ app.get('/factorial/:n', (req, res) => {
         }
         res.json({
             input: input,
-            output: factorial(input)
+            output: fact(input)
         });
     } catch(err) {
         res.status(500).send('the parameter for factorial must be an integer greater than zero.');
     }
 })
 
-function factorial(n) {
-    let f = 1 ;
 
-    for(var i = n; i >= 1; i--){
-        f = f * i;
-      }
-    return f;
-}
 app.listen(port, () => {
   console.log(`listening on  http://localhost:${port}`)
 })
